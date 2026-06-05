@@ -1,0 +1,85 @@
+{
+  "version": "1.0",
+  "description": "Application category taxonomy for screen time monitoring",
+  "categories": {
+    "ai_tools": {
+      "label": "AI Tools",
+      "description": "AI chatbots, coding assistants, and LLM interfaces",
+      "patterns": [
+        "chatgpt", "claude", "copilot", "bard", "gemini", "perplexity",
+        "cursor", "windsurf", "llama", "ollama", "poe", "you.com",
+        "huggingface", "anthropic"
+      ],
+      "threshold_minutes": 120,
+      "tier3_block_domains": [
+        "api.openai.com", "api.anthropic.com", "claude.ai",
+        "bard.google.com", "gemini.google.com", "chat.openai.com",
+        "api.perplexity.ai", "poe.com"
+      ]
+    },
+    "social_media": {
+      "label": "Social Media",
+      "description": "Social networking, messaging, and content consumption platforms",
+      "patterns": [
+        "facebook", "twitter", "x.com", "instagram", "tiktok",
+        "youtube", "reddit", "linkedin", "discord", "slack",
+        "telegram", "whatsapp", "snapchat", "pinterest", "tumblr",
+        "wechat", "messenger", "signal", "threads", "bluesky"
+      ],
+      "threshold_minutes": 180,
+      "tier3_block_domains": [
+        "facebook.com", "twitter.com", "x.com", "instagram.com",
+        "tiktok.com", "youtube.com", "reddit.com", "linkedin.com",
+        "discord.com", "telegram.org"
+      ]
+    },
+    "entertainment": {
+      "label": "Entertainment",
+      "description": "Streaming, gaming, and passive content consumption",
+      "patterns": [
+        "spotify", "netflix", "twitch", "steam", "epic",
+        "disney", "hulu", "prime video", "hbo", "apple tv",
+        "games", "minecraft", "roblox", "valorant", "league"
+      ],
+      "threshold_minutes": 180,
+      "tier3_block_domains": [
+        "netflix.com", "twitch.tv", "hulu.com", "disneyplus.com",
+        "hbomax.com", "primevideo.com"
+      ]
+    },
+    "productive": {
+      "label": "Productive",
+      "description": "Development, writing, and knowledge work tools",
+      "patterns": [
+        "code", "vscode", "sublime", "notion", "obsidian",
+        "evernote", "calendar", "mail", "outlook", "gmail",
+        "excel", "word", "powerpoint", "terminal", "cmd",
+        "intellij", "pycharm", "android studio", "xcode", "figma",
+        "linear", "jira", "confluence", "trello", "asana",
+        "todoist", "things", "bear", "craft", "ulysses"
+      ],
+      "threshold_minutes": 480,
+      "tier3_block_domains": []
+    },
+    "unknown": {
+      "label": "Unknown",
+      "description": "Applications not yet categorized",
+      "patterns": [],
+      "threshold_minutes": 240,
+      "tier3_block_domains": []
+    }
+  },
+  "domain_blocklist": [
+    "openai.com", "anthropic.com", "claude.ai", "bard.google.com",
+    "gemini.google.com", "perplexity.ai", "poe.com", "you.com",
+    "facebook.com", "twitter.com", "x.com", "instagram.com",
+    "tiktok.com", "youtube.com", "reddit.com", "linkedin.com",
+    "discord.com", "telegram.org", "twitch.tv", "netflix.com"
+  ],
+  "ai_tool_domains": [
+    "openai.com", "anthropic.com", "claude.ai", "bard.google.com",
+    "gemini.google.com", "api.openai.com", "api.anthropic.com",
+    "chat.openai.com", "api.perplexity.ai", "poe.com", "you.com",
+    "huggingface.co", "huggingface.com"
+  ]
+}

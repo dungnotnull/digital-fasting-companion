@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Fasting Companion</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #0d1117; color: #c9d1d9;
+    width: 320px; padding: 20px;
+  }
+  h2 { font-size: 15px; color: #f0f6fc; margin-bottom: 16px; }
+  .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+  .stat-block { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 12px; text-align: center; }
+  .stat-block .value { font-size: 22px; font-weight: 700; color: #f0f6fc; }
+  .stat-block .label { font-size: 11px; color: #8b949e; margin-top: 2px; }
+  .status-bar {
+    padding: 8px 12px; border-radius: 6px; font-size: 12px;
+    font-weight: 600; text-align: center; margin-bottom: 12px;
+  }
+  .status-bar.active { background: #23863622; color: #238636; }
+  .status-bar.warning { background: #d2992222; color: #d29922; }
+  .status-bar.locked { background: #da363322; color: #da3633; }
+  .btn {
+    display: block; width: 100%; padding: 8px; border-radius: 6px;
+    font-size: 12px; font-weight: 600; cursor: pointer; border: none;
+    background: #21262d; color: #c9d1d9; border: 1px solid #30363d;
+    margin-bottom: 6px;
+  }
+  .btn:hover { background: #30363d; }
+  .btn-primary { background: #238636; color: #fff; border: none; }
+  .btn-primary:hover { background: #2ea043; }
+  .footer { font-size: 10px; color: #484f58; text-align: center; margin-top: 16px; }
+</style>
+</head>
+<body>
+  <div class="status-bar active" id="statusBar">Monitoring</div>
+
+  <div class="stat-grid">
+    <div class="stat-block">
+      <div class="value" id="aiTime">0h 0m</div>
+      <div class="label">AI Tools Today</div>
+    </div>
+    <div class="stat-block">
+      <div class="value" id="socialTime">0h 0m</div>
+      <div class="label">Social Media Today</div>
+    </div>
+  </div>
+
+  <button class="btn" id="dashboardBtn">View Dashboard</button>
+  <button class="btn" id="settingsBtn">Settings</button>
+
+  <div class="footer">Digital Fasting Companion v0.1.0</div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+# Digital Fasting Companion — Chrome Extension Native Messaging Host Manifest
+#
+# Install on Windows:
+#   HKCU\Software\Google\Chrome\NativeMessagingHosts\com.digitalfasting.companion = path\to\this\manifest.json
+#
+# Install on macOS:
+#   ~/Library/Application Support/Google/Chrome/NativeMessagingHosts/com.digitalfasting.companion.json
+#
+# Install on Linux:
+#   ~/.config/google-chrome/NativeMessagingHosts/com.digitalfasting.companion.json
+
+{
+  "name": "com.digitalfasting.companion",
+  "description": "Digital Fasting Companion — Native Messaging Host",
+  "path": "digital-fasting-companion.exe",
+  "type": "stdio",
+  "allowed_origins": [
+    "chrome-extension://__EXTENSION_ID__/"
+  ]
+}

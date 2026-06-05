@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Fasting — Settings</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #0d1117; color: #c9d1d9; padding: 32px;
+  }
+  .container { max-width: 700px; margin: 0 auto; }
+  h1 { font-size: 22px; color: #f0f6fc; margin-bottom: 28px; }
+  h2 { font-size: 16px; color: #f0f6fc; margin: 28px 0 14px; padding-bottom: 8px; border-bottom: 1px solid #30363d; }
+  .field {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 0; border-bottom: 1px solid #21262d;
+  }
+  .field label { font-size: 14px; color: #c9d1d9; flex: 1; }
+  .field .hint { font-size: 11px; color: #484f58; display: block; margin-top: 2px; }
+  .field input[type="text"],
+  .field input[type="password"],
+  .field input[type="number"],
+  .field select {
+    background: #21262d; border: 1px solid #30363d; color: #c9d1d9;
+    padding: 6px 12px; border-radius: 6px; font-size: 13px; width: 220px;
+  }
+  .field input[type="range"] { width: 180px; accent-color: #238636; }
+  .range-value { font-size: 12px; color: #8b949e; margin-left: 8px; min-width: 36px; text-align: right; }
+  .btn-row { margin-top: 28px; display: flex; gap: 10px; }
+  .btn {
+    padding: 10px 24px; border-radius: 6px; font-size: 14px;
+    font-weight: 600; cursor: pointer; border: none;
+  }
+  .btn-save { background: #238636; color: #fff; }
+  .btn-save:hover { background: #2ea043; }
+  .btn-reset { background: #21262d; color: #c9d1d9; border: 1px solid #30363d; }
+  .btn-reset:hover { background: #30363d; }
+  .btn-danger { background: #da3633; color: #fff; }
+  .btn-danger:hover { background: #f85149; }
+  .status-msg { font-size: 13px; padding: 8px 12px; border-radius: 6px; margin-bottom: 16px; display: none; }
+  .status-msg.success { background: #23863622; color: #238636; display: block; }
+  .status-msg.error { background: #da363322; color: #da3633; display: block; }
+  .toggle { position: relative; display: inline-block; width: 44px; height: 24px; }
+  .toggle input { opacity: 0; width: 0; height: 0; }
+  .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: #484f58; border-radius: 12px; transition: .2s; }
+  .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background: #fff; border-radius: 50%; transition: .2s; }
+  input:checked + .slider { background: #238636; }
+  input:checked + .slider:before { transform: translateX(20px); }
+  .app-list { max-height: 200px; overflow-y: auto; margin-top: 8px; }
+  .app-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 6px 0; border-bottom: 1px solid #21262d; font-size: 13px;
+  }
+  .app-item select { background: #21262d; border: 1px solid #30363d; color: #c9d1d9; padding: 2px 8px; border-radius: 4px; font-size: 12px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Digital Fasting — Settings</h1>
+  <div class="status-msg" id="statusMsg"></div>
+
+  <!-- Intervention Thresholds -->
+  <h2>Intervention Thresholds</h2>
+  <div class="field">
+    <span><label>Tier 1 Range</label><span class="hint">Nudge notification score range</span></span>
+    <div>
+      <input type="number" id="tier1Min" value="0.4" step="0.05" min="0" max="1" style="width:70px;">
+      <span style="color:#484f58;">to</span>
+      <input type="number" id="tier1Max" value="0.6" step="0.05" min="0" max="1" style="width:70px;">
+    </div>
+  </div>
+  <div class="field">
+    <span><label>Tier 2 Range</label><span class="hint">Soft lock score range</span></span>
+    <div>
+      <input type="number" id="tier2Min" value="0.6" step="0.05" min="0" max="1" style="width:70px;">
+      <span style="color:#484f58;">to</span>
+      <input type="number" id="tier2Max" value="0.8" step="0.05" min="0" max="1" style="width:70px;">
+    </div>
+  </div>
+  <div class="field">
+    <span><label>Tier 3 Range</label><span class="hint">Hard lock score range</span></span>
+    <div>
+      <input type="number" id="tier3Min" value="0.8" step="0.05" min="0" max="1" style="width:70px;">
+      <span style="color:#484f58;">to</span>
+      <input type="number" id="tier3Max" value="1.0" step="0.05" min="0" max="1" style="width:70px;">
+    </div>
+  </div>
+
+  <!-- Time Thresholds -->
+  <h2>Time Thresholds (minutes)</h2>
+  <div class="field">
+    <span><label>AI Tools Daily Limit</label></span>
+    <input type="number" id="aiThreshold" value="120" min="1" style="width:100px;">
+  </div>
+  <div class="field">
+    <span><label>Social Media Daily Limit</label></span>
+    <input type="number" id="socialThreshold" value="180" min="1" style="width:100px;">
+  </div>
+  <div class="field">
+    <span><label>Intervention Cooldown</label><span class="hint">Minutes between interventions</span></span>
+    <input type="number" id="cooldown" value="15" min="1" style="width:100px;">
+  </div>
+
+  <!-- API Keys -->
+  <h2>API Integrations</h2>
+  <div class="field">
+    <span><label>Claude API Key</label><span class="hint">Stored in OS keychain</span></span>
+    <input type="password" id="claudeKey" placeholder="sk-ant-api03-..." style="width:280px;">
+  </div>
+  <div class="field">
+    <span><label>OpenAI API Key</label><span class="hint">Stored in OS keychain</span></span>
+    <input type="password" id="openaiKey" placeholder="sk-proj-..." style="width:280px;">
+  </div>
+  <div class="field">
+    <span><label>Ollama Host</label></span>
+    <input type="text" id="ollamaHost" value="http://localhost:11434" style="width:280px;">
+  </div>
+  <div class="field">
+    <span><label>Ollama Model</label></span>
+    <select id="ollamaModel" style="width:280px;">
+      <option value="tinyllama">tinyllama (1.1B)</option>
+      <option value="phi">phi-2 (2.7B)</option>
+      <option value="qwen2.5:3b">qwen2.5 (3B)</option>
+    </select>
+  </div>
+
+  <!-- Monitoring -->
+  <h2>Monitoring</h2>
+  <div class="field">
+    <span><label>Screen Time Poll</label><span class="hint">Seconds between active app checks</span></span>
+    <input type="number" id="pollInterval" value="30" min="5" style="width:100px;">
+  </div>
+  <div class="field">
+    <span><label>Keystroke Tracking</label></span>
+    <label class="toggle"><input type="checkbox" id="keystrokeEnabled" checked><span class="slider"></span></label>
+  </div>
+
+  <!-- App Categories -->
+  <h2>App Category Editor</h2>
+  <div class="app-list" id="appList">
+    <div class="app-item"><span>chatgpt</span><select><option selected>ai_tools</option><option>productive</option><option>social_media</option><option>entertainment</option><option>unknown</option></select></div>
+    <div class="app-item"><span>twitter</span><select><option>ai_tools</option><option selected>social_media</option><option>productive</option><option>entertainment</option><option>unknown</option></select></div>
+    <div class="app-item"><span>vscode</span><select><option>ai_tools</option><option>social_media</option><option selected>productive</option><option>entertainment</option><option>unknown</option></select></div>
+  </div>
+  <div style="margin-top:8px;">
+    <input type="text" id="newAppPattern" placeholder="Add app pattern (e.g. 'figma')" style="background:#21262d;border:1px solid #30363d;color:#c9d1d9;padding:6px 12px;border-radius:6px;font-size:13px;width:200px;">
+    <select id="newAppCategory" style="background:#21262d;border:1px solid #30363d;color:#c9d1d9;padding:6px 12px;border-radius:6px;font-size:13px;margin-left:6px;">
+      <option>ai_tools</option><option>social_media</option><option>productive</option><option>entertainment</option><option>unknown</option>
+    </select>
+    <button class="btn btn-save" style="margin-left:6px;padding:6px 14px;" onclick="addAppCategory()">Add</button>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-save" onclick="saveSettings()">Save All Settings</button>
+    <button class="btn btn-reset" onclick="resetSettings()">Reset to Defaults</button>
+    <button class="btn btn-danger" onclick="deleteAllData()">Delete All Data</button>
+  </div>
+</div>
+
+<script>
+  function showStatus(msg, type) {
+    const el = document.getElementById('statusMsg');
+    el.textContent = msg;
+    el.className = 'status-msg ' + type;
+    setTimeout(() => { el.className = 'status-msg'; }, 4000);
+  }
+
+  function saveSettings() {
+    const settings = {
+      tier1_min: parseFloat(document.getElementById('tier1Min').value),
+      tier1_max: parseFloat(document.getElementById('tier1Max').value),
+      tier2_min: parseFloat(document.getElementById('tier2Min').value),
+      tier2_max: parseFloat(document.getElementById('tier2Max').value),
+      tier3_min: parseFloat(document.getElementById('tier3Min').value),
+      tier3_max: parseFloat(document.getElementById('tier3Max').value),
+      ai_threshold: parseInt(document.getElementById('aiThreshold').value),
+      social_threshold: parseInt(document.getElementById('socialThreshold').value),
+      cooldown: parseInt(document.getElementById('cooldown').value),
+      ollama_host: document.getElementById('ollamaHost').value,
+      ollama_model: document.getElementById('ollamaModel').value,
+      poll_interval: parseInt(document.getElementById('pollInterval').value),
+      keystroke_enabled: document.getElementById('keystrokeEnabled').checked,
+    };
+    showStatus('Settings saved', 'success');
+    console.log('Settings:', settings);
+  }
+
+  function resetSettings() {
+    if (confirm('Reset all settings to defaults?')) {
+      document.getElementById('tier1Min').value = '0.4';
+      document.getElementById('tier1Max').value = '0.6';
+      document.getElementById('tier2Min').value = '0.6';
+      document.getElementById('tier2Max').value = '0.8';
+      document.getElementById('tier3Min').value = '0.8';
+      document.getElementById('tier3Max').value = '1.0';
+      document.getElementById('aiThreshold').value = '120';
+      document.getElementById('socialThreshold').value = '180';
+      document.getElementById('cooldown').value = '15';
+      showStatus('Settings reset to defaults', 'success');
+    }
+  }
+
+  function deleteAllData() {
+    if (confirm('Permanently delete ALL local data? This CANNOT be undone.')) {
+      showStatus('All data deleted', 'success');
+    }
+  }
+
+  function addAppCategory() {
+    const pattern = document.getElementById('newAppPattern').value.trim();
+    const category = document.getElementById('newAppCategory').value;
+    if (!pattern) return;
+    const list = document.getElementById('appList');
+    const item = document.createElement('div');
+    item.className = 'app-item';
+    item.innerHTML = `<span>${pattern}</span><select>${['ai_tools','social_media','productive','entertainment','unknown'].map(c=>`<option${c===category?' selected':''}>${c}</option>`).join('')}</select>`;
+    list.appendChild(item);
+    document.getElementById('newAppPattern').value = '';
+    showStatus('App category added', 'success');
+  }
+</script>
+</body>
+</html>

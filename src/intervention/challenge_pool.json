@@ -1,0 +1,146 @@
+{
+  "version": "1.0",
+  "description": "Static pool of 20 offline real-world challenges for digital fasting interventions",
+  "challenges": [
+    {
+      "id": "physical-001",
+      "category": "physical",
+      "title": "Take a 10-minute walk outside",
+      "description": "Step outside and walk for at least 10 minutes. No phone, no music, no podcasts. Notice three things you haven't seen before in your neighborhood.",
+      "time_limit_seconds": 900
+    },
+    {
+      "id": "physical-002",
+      "category": "physical",
+      "title": "Do 20 pushups and stretch",
+      "description": "Complete 20 pushups (modified on knees if needed), then hold three stretches for 30 seconds each: hamstrings, shoulders, and neck.",
+      "time_limit_seconds": 300
+    },
+    {
+      "id": "physical-003",
+      "category": "physical",
+      "title": "Deep breathing session",
+      "description": "Find a quiet spot. Breathe in for 4 seconds, hold for 4, out for 6. Repeat for 5 minutes. Focus only on the sensation of air moving in and out.",
+      "time_limit_seconds": 300
+    },
+    {
+      "id": "physical-004",
+      "category": "physical",
+      "title": "Stair climb challenge",
+      "description": "Find a set of stairs and climb up and down 5 times. Take a 1-minute rest at the top between rounds. Count your steps.",
+      "time_limit_seconds": 600
+    },
+    {
+      "id": "physical-005",
+      "category": "physical",
+      "title": "Shadow boxing or dance",
+      "description": "Put on a song you love (no screen needed - just audio or no music) and move your body for the full duration. Dance, shadow box, or freestyle stretch.",
+      "time_limit_seconds": 300
+    },
+    {
+      "id": "creative-001",
+      "category": "creative",
+      "title": "Write a haiku about your day",
+      "description": "Write three haikus (5-7-5 syllable structure) about your current state of mind. Use pen and paper only - no digital tools.",
+      "time_limit_seconds": 600
+    },
+    {
+      "id": "creative-002",
+      "category": "creative",
+      "title": "Doodle for 10 minutes",
+      "description": "Take a blank sheet of paper and doodle freely for 10 minutes. Don't judge the result - the goal is flow, not art. Use at least two colors if available.",
+      "time_limit_seconds": 600
+    },
+    {
+      "id": "creative-003",
+      "category": "creative",
+      "title": "Rearrange your workspace",
+      "description": "Move three items on your desk or in your room to new positions. Clean one surface completely. Notice how the change affects your focus.",
+      "time_limit_seconds": 900
+    },
+    {
+      "id": "creative-004",
+      "category": "creative",
+      "title": "Build a small origami figure",
+      "description": "Find a piece of paper and fold it into a simple origami shape (crane, boat, or hat). If you don't know how, invent your own fold pattern.",
+      "time_limit_seconds": 600
+    },
+    {
+      "id": "creative-005",
+      "category": "creative",
+      "title": "Write a letter to your future self",
+      "description": "Grab a pen and paper. Write a short letter to yourself one year from now. What do you hope has changed? What matters most right now?",
+      "time_limit_seconds": 900
+    },
+    {
+      "id": "social-001",
+      "category": "social",
+      "title": "Call a friend or family member",
+      "description": "Call someone you care about - voice only, no video. Ask them about their day and really listen. Don't mention technology or social media in the conversation.",
+      "time_limit_seconds": 600
+    },
+    {
+      "id": "social-002",
+      "category": "social",
+      "title": "Give a genuine compliment",
+      "description": "Find a colleague, neighbor, or stranger and give them a specific, genuine compliment about something they did or who they are. Notice their reaction.",
+      "time_limit_seconds": 300
+    },
+    {
+      "id": "social-003",
+      "category": "social",
+      "title": "Write a thank-you note",
+      "description": "Write a physical thank-you note to someone who helped you recently. Be specific about what they did and how it affected you. Deliver it if possible.",
+      "time_limit_seconds": 600
+    },
+    {
+      "id": "social-004",
+      "category": "social",
+      "title": "Have a 5-minute eye-contact conversation",
+      "description": "Find someone willing and have a 5-minute conversation while maintaining comfortable eye contact. No phones in sight for either person.",
+      "time_limit_seconds": 300
+    },
+    {
+      "id": "social-005",
+      "category": "social",
+      "title": "Help someone with a small task",
+      "description": "Find someone nearby and offer to help them with something small right now - carrying something, holding a door, or solving a quick problem.",
+      "time_limit_seconds": 600
+    },
+    {
+      "id": "introspective-001",
+      "category": "introspective",
+      "title": "Three good things journal",
+      "description": "Write down three things that went well today and why they happened. Be specific. This is a proven positive psychology intervention.",
+      "time_limit_seconds": 600
+    },
+    {
+      "id": "introspective-002",
+      "category": "introspective",
+      "title": "Body scan meditation",
+      "description": "Sit or lie down comfortably. Close your eyes and mentally scan from your toes to the top of your head, noticing sensations without judgment.",
+      "time_limit_seconds": 600
+    },
+    {
+      "id": "introspective-003",
+      "category": "introspective",
+      "title": "Identify your triggers",
+      "description": "On paper, list three situations today where you reached for your phone or AI tool without thinking. What emotion preceded the action?",
+      "time_limit_seconds": 600
+    },
+    {
+      "id": "introspective-004",
+      "category": "introspective",
+      "title": "Define one deep work session",
+      "description": "On paper, define one specific task you'll do next with zero digital distractions for at least 45 minutes. Write the start time and commit.",
+      "time_limit_seconds": 300
+    },
+    {
+      "id": "introspective-005",
+      "category": "introspective",
+      "title": "Gratitude walk",
+      "description": "Walk slowly for 5 minutes while mentally listing everything you're grateful for in your immediate environment. Notice sounds, light, textures.",
+      "time_limit_seconds": 300
+    }
+  ]
+}

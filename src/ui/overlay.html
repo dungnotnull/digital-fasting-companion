@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Fasting — Challenge Overlay</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #0d1117;
+    color: #c9d1d9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    -webkit-app-region: drag;
+  }
+  .overlay {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 16px;
+    padding: 48px 40px;
+    max-width: 520px;
+    width: 90%;
+    text-align: center;
+    -webkit-app-region: no-drag;
+  }
+  .tier-badge {
+    display: inline-block;
+    background: #238636;
+    color: #fff;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 24px;
+  }
+  .tier-badge.tier3 { background: #da3633; }
+  h1 { font-size: 22px; font-weight: 600; margin-bottom: 12px; color: #f0f6fc; }
+  .description {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #8b949e;
+    margin-bottom: 32px;
+  }
+  .timer {
+    font-size: 14px;
+    color: #58a6ff;
+    margin-bottom: 28px;
+  }
+  .challenge-card {
+    background: #21262d;
+    border: 1px solid #30363d;
+    border-radius: 10px;
+    padding: 24px;
+    margin-bottom: 28px;
+    text-align: left;
+  }
+  .challenge-card .category {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #8b949e;
+    margin-bottom: 8px;
+  }
+  .challenge-card .title {
+    font-size: 17px;
+    font-weight: 600;
+    color: #f0f6fc;
+    margin-bottom: 10px;
+  }
+  .challenge-card .desc {
+    font-size: 14px;
+    line-height: 1.55;
+    color: #8b949e;
+  }
+  .btn {
+    display: inline-block;
+    padding: 12px 32px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: background 0.15s;
+  }
+  .btn-primary {
+    background: #238636;
+    color: #fff;
+  }
+  .btn-primary:hover { background: #2ea043; }
+  .btn-secondary {
+    background: #21262d;
+    color: #c9d1d9;
+    border: 1px solid #30363d;
+    margin-left: 12px;
+  }
+  .btn-secondary:hover { background: #30363d; }
+  .note {
+    font-size: 12px;
+    color: #484f58;
+    margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="overlay">
+  <div class="tier-badge tier3" id="tierBadge">TIER 3 — HARD LOCK</div>
+  <h1 id="overlayTitle">Time for a Real-World Break</h1>
+  <p class="description" id="overlayMessage">
+    You've reached your digital limit. API access has been restricted.
+    Complete the challenge below to restore access.
+  </p>
+  <div id="countdownTimer" class="timer">Challenge time: <span id="timerDisplay">--:--</span></div>
+
+  <div class="challenge-card" id="challengeCard">
+    <div class="category" id="challengeCategory">physical</div>
+    <div class="title" id="challengeTitle">Loading challenge...</div>
+    <div class="desc" id="challengeDesc">Please wait while your challenge is prepared.</div>
+  </div>
+
+  <button class="btn btn-primary" id="completeBtn">I Completed the Challenge</button>
+  <button class="btn btn-secondary" id="snoozeBtn">Snooze (5 min)</button>
+
+  <p class="note">Digital Fasting Companion — Privacy-first, local-only</p>
+</div>
+
+<script>
+  const MAX_TIME = parseInt(new URLSearchParams(window.location.search).get('time') || '0');
+
+  let remaining = MAX_TIME;
+  const display = document.getElementById('timerDisplay');
+
+  function updateTimer() {
+    if (remaining <= 0) {
+      display.textContent = 'DONE';
+      return;
+    }
+    const m = Math.floor(remaining / 60);
+    const s = remaining % 60;
+    display.textContent = `${m}:${String(s).padStart(2, '0')}`;
+    remaining--;
+  }
+
+  if (MAX_TIME > 0) {
+    updateTimer();
+    setInterval(updateTimer, 1000);
+  } else {
+    document.getElementById('countdownTimer').style.display = 'none';
+  }
+
+  function sendMessage(action) {
+    if (window.chrome && chrome.runtime) {
+      chrome.runtime.sendMessage({ action: 'challenge_' + action });
+    }
+  }
+
+  document.getElementById('completeBtn').addEventListener('click', () => {
+    document.getElementById('completeBtn').disabled = true;
+    document.getElementById('completeBtn').textContent = 'Restoring access...';
+    sendMessage('complete');
+  });
+
+  document.getElementById('snoozeBtn').addEventListener('click', () => {
+    sendMessage('snooze');
+    window.close();
+  });
+
+  function updateChallenge(data) {
+    document.getElementById('challengeCategory').textContent = data.category;
+    document.getElementById('challengeTitle').textContent = data.title;
+    document.getElementById('challengeDesc').textContent = data.description;
+  }
+</script>
+</body>
+</html>

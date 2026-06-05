@@ -1,0 +1,75 @@
+# Byte-compiled / optimized
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Environment files (contain secrets)
+.env
+.env.local
+.env.production
+
+# Database files
+data/*.db
+data/*.db-journal
+data/*.db-wal
+data/*.db-shm
+
+# Export / temp data
+data/*.json
+!data/.gitkeep
+
+# Logs
+logs/
+*.log
+
+# ML models (user-specific, should not be committed)
+data/fatigue_model.joblib
+data/baseline.json
+data/ratings.json
+data/crawler_state.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Build artifacts
+dist/
+build/
+*.spec.bak
+*.egg-info/
+*.egg
+
+# Test artifacts
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# PyInstaller
+*.manifest
+*.exe
+*.dmg
+*.app
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Packaging
+*.msi
+*.deb
+*.rpm
